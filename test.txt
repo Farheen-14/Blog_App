@@ -1,0 +1,13 @@
+export class BlogService {
+  constructor(@InjectRepository(Blog) private readonly blogRepository : Repository<Blog>){}
+  async create(createBlogDto: CreateBlogDto) {
+    let blog : Blog = new Blog()
+    blog.title = createBlogDto.title;
+    blog.description = createBlogDto.description;
+    blog.created_on = createBlogDto.created_on;
+    blog.modify_on = createBlogDto.modify_on;
+    blog.key = createBlogDto.key;
+    blog.url = createBlogDto.url;
+    return this.blogRepository.save(blog)
+    // return 'This action adds a new blog';
+  }
